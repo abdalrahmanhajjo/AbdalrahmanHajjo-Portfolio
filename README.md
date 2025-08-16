@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Abdalrahman Ahmad Hajjo's Portfolio [Link](https://abdalrahmanhajjo.github.io/AbdalrahmanHajjo-Portfolio/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+📍 Tripoli, North Lebanon | 📧 [abedhajjo57@gmail.com](mailto:abedhajjo57@gmail.com) | 📞 [+961 76 536 462](tel:+96176536462)  
+🔗 [GitHub](https://github.com/abdalrahmanhajjo) | 🔗 [LinkedIn](https://linkedin.com/in/yourprofile)
 
-## Available Scripts
+## 💡 Professional Summary
 
-In the project directory, you can run:
+Full-stack developer specializing in React.js with hands-on experience building modern web applications through academic projects and freelance work. Certified by industry leaders Meta and Microsoft, with expertise in front-end development including React.js, Next.js, and modern JavaScript frameworks. Skilled at creating responsive, component-based UIs and integrating them with backend services.
 
-### `npm start`
+## ⚙ Technical Skills
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React.js, Next.js, HTML5, CSS3, JavaScript (ES6+), Tailwind CSS, Redux, Responsive Design
+- **Backend**: Node.js, Python (Flask), PHP, REST APIs
+- **Databases**: MySQL, SQLite, Firebase
+- **Tools & Platforms**: Git, GitHub, WordPress, VS Code, npm/yarn
+- **React Ecosystem**: React Hooks, Context API, React Router, Material-UI
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 💼 Professional Experience
 
-### `npm test`
+### Web Developer & Trainer — Nuwat Association (Aug 2025 – Present)
+- Developed React-based admin dashboard improving operational efficiency by 40%
+- Migrated legacy jQuery applications to modern React architecture
+- Implemented state management solutions using Redux and Context API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Freelance Web Developer (2023 – Present)
+- Built 15+ React applications with custom hooks and reusable components
+- Created interactive SPAs (Single Page Applications) with React Router
+- Optimized React performance using memoization and code splitting
 
-### `npm run build`
+## 🎓 Education
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### BSc in Computer Science — Beirut Arab University (Expected 2026)
+- Specialized in Modern Web Technologies
+- Thesis: "Performance Optimization in React Applications"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📜 Industry Certifications
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Meta Front-End Developer Certificate (Jul-Aug 2025)**
+  - Advanced React (Verify)
+  - React State Management (Verify)
+  - React Performance Optimization (Verify)
 
-### `npm run eject`
+- **React Specialization (2025)**
+  - React Fundamentals (Verify)
+  - Advanced React Patterns (Verify)
+  - React Testing (Verify)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠 Selected Projects
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### SportBootsPro | React E-Commerce Platform
+Modern e-commerce platform built with React and Redux
+- Implemented cart functionality with React Context API
+- Developed product filtering with custom React hooks
+- Achieved 95+ Lighthouse performance score
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### FitSync 2.0 | React Fitness Tracker
+Complete rewrite of original app using React.js
+- Real-time data visualization with React Charts
+- Custom workout builder with drag-and-drop interface
+- JWT authentication with React Router protected routes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### React Portfolio (Current Project)
+- Built with React.js and Framer Motion animations
+- Responsive design with CSS Modules
+- Contact form with Formik and Yup validation
 
-## Learn More
+## 🌍 Languages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Arabic (Native)
+- English (Professional Proficiency)
