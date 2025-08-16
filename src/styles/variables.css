@@ -1,0 +1,200 @@
+:root {
+  /* ========== Color System ========== */
+  /* Primary Color Palette */
+  --primary-50: #f8fafc;
+  --primary-100: #f1f5f9;
+  --primary-200: #e2e8f0;
+  --primary-300: #cbd5e1;
+  --primary-400: #94a3b8;
+  --primary-500: #64748b;
+  --primary-600: #475569;
+  --primary-700: #334155;
+  --primary-800: #1e293b;
+  --primary-900: #0f172a;
+  --primary-950: #020617;
+  
+  /* Accent Color Palette */
+  --accent-50: #eff6ff;
+  --accent-100: #dbeafe;
+  --accent-200: #bfdbfe;
+  --accent-300: #93c5fd;
+  --accent-400: #60a5fa;
+  --accent-500: #3b82f6;
+  --accent-600: #2563eb;
+  --accent-700: #1d4ed8;
+  --accent-800: #1e40af;
+  --accent-900: #1e3a8a;
+  --accent-950: #172554;
+  
+  /* Extended Color System */
+  --success-500: #10b981;
+  --warning-500: #f59e0b;
+  --error-500: #ef4444;
+  --info-500: #06b6d4;
+  
+  /* Semantic Backgrounds */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Semantic Text */
+  --text-primary: var(--primary-900);
+  --text-secondary: var(--primary-700);
+  --text-tertiary: var(--primary-500);
+  --text-heading: var(--primary-950);
+  --text-inverse: #ffffff;
+  --text-muted: var(--primary-400);
+  
+  /* Borders */
+  --border-light: 1px solid rgba(0, 0, 0, 0.1);
+  --border-medium: 1px solid rgba(0, 0, 0, 0.2);
+  --border-dark: 1px solid rgba(0, 0, 0, 0.3);
+  --border-radius: var(--radius-md);
+  
+  /* Special Effects */
+  --bg-accent: linear-gradient(135deg, var(--accent-500), var(--accent-600));
+  --bg-glass: rgba(255, 255, 255, 0.15);
+  --bg-glass-strong: rgba(255, 255, 255, 0.25);
+  --bg-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  
+  /* ========== Spacing System ========== */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+  
+  /* ========== Typography ========== */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  
+  --line-height-xs: 1;
+  --line-height-sm: 1.25;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.75;
+  
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  
+  /* ========== Border Radius ========== */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+  --radius-pill: 9999px;
+  
+  /* ========== Shadows ========== */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-accent: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+  
+  /* ========== Transitions & Animations ========== */
+  --transition-fast: 100ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  --animation-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animation-spin: spin 1s linear infinite;
+  
+  /* ========== Layout ========== */
+  --container-max: 1440px;
+  --container-padding: var(--space-xl);
+  --header-height: 5rem;
+  --section-padding: var(--space-3xl);
+  --grid-gap: var(--space-md);
+  
+  /* ========== Z-Index ========== */
+  --z-below: -1;
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal: 30;
+  --z-popover: 40;
+  --z-tooltip: 50;
+  --z-toast: 60;
+}
+
+/* ========== Dark Mode ========== */
+[data-theme="dark"] {
+  /* Color System */
+  --bg-primary: var(--primary-950);
+  --bg-secondary: var(--primary-900);
+  --bg-tertiary: var(--primary-800);
+  --bg-card: var(--primary-900);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  
+  --text-primary: var(--primary-50);
+  --text-secondary: var(--primary-200);
+  --text-tertiary: var(--primary-400);
+  --text-heading: #ffffff;
+  --text-inverse: var(--primary-950);
+  --text-muted: var(--primary-500);
+  
+  /* Borders */
+  --border-light: 1px solid rgba(255, 255, 255, 0.1);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.2);
+  --border-dark: 1px solid rgba(255, 255, 255, 0.3);
+  
+  /* Special Effects */
+  --bg-glass: rgba(15, 23, 42, 0.7);
+  --bg-glass-strong: rgba(15, 23, 42, 0.9);
+  
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.25);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+  
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.15);
+}
+
+/* ========== Animations ========== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========== Media Queries ========== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-slow: 0ms;
+    --transition-bounce: 0ms;
+  }
+}
