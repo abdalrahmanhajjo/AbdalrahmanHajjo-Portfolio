@@ -1,0 +1,11 @@
+{
+  "methods": [
+    { "icon": "FaEnvelope", "label": "Email", "value": "abedhajjo57@gmail.com", "href": "mailto:abedhajjo57@gmail.com" },
+    { "icon": "FaPhone", "label": "Phone", "value": "+961 76 536 462", "href": "tel:+96176536462" },
+    { "icon": "FaMapMarkerAlt", "label": "Location", "value": "Tripoli, Lebanon", "href": null }
+  ],
+  "social": [
+    { "icon": "FaGithub", "label": "GitHub", "value": "github.com/abdalrahmanhajjo", "href": "https://github.com/abdalrahmanhajjo" },
+    { "icon": "FaLinkedinIn", "label": "LinkedIn", "value": "linkedin.com/in/abdalrahman-hajjo", "href": "https://linkedin.com/in/abdalrahman-hajjo-176888309" }
+  ]
+}

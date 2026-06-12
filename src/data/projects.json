@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "image": "images/tripoli-explorer.jpg",
+    "title": "Visit Tripoli",
+    "category": "Web & Mobile",
+    "subtitle": "Tourism platform for Tripoli, Lebanon",
+    "description": "A full-stack tourism platform with a Flutter mobile app and React web app sharing the same NOSQL/MongoDB database. Features places, tours, events, user auth, profiles, and trips — with production-ready backend security, rate limiting, and connection pooling.",
+    "date": "2025",
+    "tech": ["Flutter", "Dart", "React.js", "Vite", "Node.js", "Express.js", "NOSQL", "MongoDB", "JWT", "REST APIs"],
+    "liveLink": "https://visit-tripoli.com",
+    "codeLink": "https://github.com/abdalrahmanhajjo"
+  },
+  {
+    "id": 2,
+    "image": "images/2.png",
+    "title": "SportBootsPro",
+    "category": "E-Commerce",
+    "subtitle": "Lebanon's premier sportswear marketplace",
+    "description": "A comprehensive e-commerce platform featuring secure payments, inventory management, and user-friendly shopping experience.",
+    "date": "June 2024",
+    "tech": ["Flask", "MySQL", "JavaScript", "Stripe API", "Bootstrap"],
+    "liveLink": "https://sportbootspro.42web.io/",
+    "codeLink": "https://github.com/abdalrahmanhajjo/SportBootsPro"
+  },
+  {
+    "id": 3,
+    "image": "images/3.png",
+    "title": "Children Album",
+    "category": "Web App",
+    "subtitle": "Digital platform for childhood memories",
+    "description": "A heartwarming platform for families to preserve and organize childhood memories with photo management.",
+    "date": "May 2024",
+    "tech": ["PHP", "MySQL", "Tailwind CSS", "TCPDF", "JavaScript"],
+    "liveLink": "https://children-album.great-site.net/children-album/",
+    "codeLink": "https://github.com/abdalrahmanhajjo/Children-Album"
+  },
+  {
+    "id": 4,
+    "image": "images/41.png",
+    "title": "FitSync",
+    "category": "Mobile App",
+    "subtitle": "Fitness tracking application",
+    "description": "A fitness mobile application that helps users track workouts, set goals, and monitor progress.",
+    "date": "April 2024",
+    "tech": ["Flutter", "Dart", "Firebase", "UI Design"],
+    "liveLink": null,
+    "codeLink": "https://github.com/abdalrahmanhajjo/Fitsync"
+  }
+]

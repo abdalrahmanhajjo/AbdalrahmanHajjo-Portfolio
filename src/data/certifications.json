@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Meta Certifications",
+    "org": "Meta (Facebook)",
+    "aosDelay": "100",
+    "items": [
+      { "name": "Introduction to Front-End Development", "link": "https://coursera.org/verify/RAAEAFPMVHIB" },
+      { "name": "Programming with JavaScript", "link": "https://coursera.org/verify/EK15N702H23" },
+      { "name": "HTML and CSS in Depth", "link": "https://coursera.org/verify/Y5VU7GUNR8L3" },
+      { "name": "Version Control", "link": "https://coursera.org/verify/MWQY8Q2GSGKB" }
+    ]
+  },
+  {
+    "title": "Microsoft Certifications",
+    "org": "Microsoft",
+    "aosDelay": "200",
+    "items": [
+      { "name": "Microsoft 365 Fundamentals (Specialization)", "link": "https://coursera.org/verify/specialization/ZUFE1PARK2IQ" },
+      { "name": "Work Smarter with Microsoft Word", "link": "https://coursera.org/verify/GMESU21RV1KX" },
+      { "name": "Work Smarter with Microsoft Excel", "link": "https://coursera.org/verify/B4UTBTO886ML" },
+      { "name": "Work Smarter with Microsoft PowerPoint", "link": "https://coursera.org/verify/KGHI5KKTQYZV" }
+    ]
+  },
+  {
+    "title": "WordPress Certifications",
+    "org": "WordPress",
+    "aosDelay": "300",
+    "items": [
+      { "name": "Build a Full Website using WordPress", "link": "https://coursera.org/verify/X7DW97GS835M" },
+      { "name": "Build a Free Website with WordPress", "link": "https://coursera.org/verify/6BM1PW7YPW7J" },
+      { "name": "IC3 Digital Literacy Certification", "link": null }
+    ]
+  }
+]

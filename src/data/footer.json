@@ -1,0 +1,24 @@
+{
+  "name": "Abdalrahman Hajjo",
+  "tagline": "Full Stack Developer passionate about creating exceptional digital experiences and innovative solutions.",
+  "quickLinks": [
+    { "label": "Home", "href": "#home" },
+    { "label": "About", "href": "#about" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Certifications", "href": "#certifications" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "services": [
+    { "label": "Web Development" },
+    { "label": "Mobile Apps" },
+    { "label": "UI/UX Design" },
+    { "label": "Consulting" },
+    { "label": "Maintenance" }
+  ],
+  "social": [
+    { "icon": "FaGithub", "href": "https://github.com/abdalrahmanhajjo", "label": "GitHub" },
+    { "icon": "FaLinkedinIn", "href": "https://linkedin.com/in/abdalrahman-hajjo-176888309", "label": "LinkedIn" },
+    { "icon": "FaEnvelope", "href": "mailto:abedhajjo57@gmail.com", "label": "Email" }
+  ]
+}

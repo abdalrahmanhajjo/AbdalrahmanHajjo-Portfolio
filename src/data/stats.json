@@ -1,0 +1,6 @@
+[
+  { "id": "projectsCount", "icon": "FiLayers", "target": 10, "suffix": "+", "label": "Projects Completed" },
+  { "id": "clientsCount", "icon": "FiUsers", "target": 10, "suffix": "+", "label": "Satisfied Clients" },
+  { "id": "certificationsCount", "icon": "FiAward", "target": 9, "suffix": "+", "label": "Certifications" },
+  { "id": "experienceCount", "icon": "FiClock", "target": 2, "suffix": "+", "label": "Years Experience" }
+]

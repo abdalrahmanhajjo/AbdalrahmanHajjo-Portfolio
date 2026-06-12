@@ -1,0 +1,31 @@
+{
+  "name": "Abdalrahman",
+  "badge": "Available for freelance work",
+  "roles": [
+    "Full Stack Developer",
+    "UI/UX Enthusiast",
+    "Problem Solver",
+    "Tech Innovator",
+    "Creative Coder"
+  ],
+  "subtitle": "I craft exceptional digital experiences with modern web technologies, combining <highlight>creativity</highlight> with <highlight>technical expertise</highlight> to build impactful solutions.",
+  "buttons": [
+    { "label": "View My Work", "href": "#projects", "icon": "FaRocket", "variant": "primary" },
+    { "label": "Let's Talk", "href": "#contact", "icon": "FaPaperPlane", "variant": "secondary" }
+  ],
+  "social": [
+    { "label": "GitHub", "href": "https://github.com/abdalrahmanhajjo", "icon": "FaGithub" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/abdalrahman-hajjo-176888309/", "icon": "FaLinkedin" },
+    { "label": "Instagram", "href": "https://instagram.com", "icon": "FaInstagram" }
+  ],
+  "codePreview": {
+    "filename": "about-me.js",
+    "varName": "developer",
+    "fields": [
+      { "key": "name", "value": "Abdalrahman", "type": "string" },
+      { "key": "skills", "value": ["React", "Node.js", "Python"], "type": "array" },
+      { "key": "passion", "value": "Building amazing things", "type": "string" }
+    ],
+    "comment": "// Ready to create something amazing together"
+  }
+}

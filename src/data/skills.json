@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Frontend",
+    "categoryIcon": "FaReact",
+    "description": "Modern frameworks and UI development",
+    "color": "var(--accent-500)",
+    "skills": [
+      { "name": "React", "icon": "FaReact" },
+      { "name": "Next.js", "icon": "SiNextdotjs" },
+      { "name": "TypeScript", "icon": "SiTypescript" },
+      { "name": "JavaScript", "icon": "SiJavascript" },
+      { "name": "TailwindCSS", "icon": "SiTailwindcss" }    ]
+  },
+  {
+    "title": "Backend",
+    "categoryIcon": "FaNodeJs",
+    "description": "Server-side applications and APIs",
+    "color": "var(--accent-600)",
+    "skills": [
+      { "name": "Node.js", "icon": "FaNodeJs" },
+      { "name": "Express", "icon": "SiExpress" },
+      { "name": "Python", "icon": "FaPython" }    ]
+  },
+  {
+    "title": "Databases",
+    "categoryIcon": "SiPostgresql",
+    "description": "Data storage and management",
+    "color": "var(--accent-700)",
+    "skills": [
+      { "name": "PostgreSQL", "icon": "SiPostgresql" },
+      { "name": "MongoDB", "icon": "SiMongodb" }    ]
+  },
+  {
+    "title": "DevOps",
+    "categoryIcon": "FaDocker",
+    "description": "Infrastructure and deployment",
+    "color": "var(--accent-800)",
+    "skills": [
+      { "name": "Docker", "icon": "FaDocker" },
+      { "name": "AWS", "icon": "FaAws" },
+      { "name": "Git", "icon": "FaGitAlt" }
+    ]
+  },
+  {
+    "title": "Testing",
+    "categoryIcon": "SiJest",
+    "description": "Quality assurance and validation",
+    "color": "var(--accent-900)",
+    "skills": [
+      { "name": "Jest", "icon": "SiJest" },
+      { "name": "Unit Testing", "icon": "FaTools" },
+      { "name": "E2E Testing", "icon": "FaTools" }
+    ]
+  }
+]
