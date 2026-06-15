@@ -33,9 +33,27 @@ const Header = ({ theme, toggleTheme }) => {
           <span>Abdalrahman Hajjo</span>
         </a>
 
+        <div className={`nav-backdrop ${isMobileMenuOpen ? 'active' : ''}`} onClick={closeMobileMenu}></div>
+
+        <nav className={`nav ${isMobileMenuOpen ? 'active' : ''}`}>
+          <ul className="nav-menu">
+            {['home', 'about', 'skills', 'projects', 'certifications', 'contact'].map((item, index) => (
+              <li key={item} style={{ animationDelay: `${index * 0.1}s` }}>
+                <a
+                  href={`#${item}`}
+                  className="nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <div className="header-controls">
-          <button 
-            className="theme-toggle" 
+          <button
+            className="theme-toggle"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             disabled={!isMounted}
@@ -50,8 +68,8 @@ const Header = ({ theme, toggleTheme }) => {
               <div className="theme-icon-placeholder" />
             )}
           </button>
-          
-          <button 
+
+          <button
             className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
             onClick={toggleMobileMenu}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -60,24 +78,6 @@ const Header = ({ theme, toggleTheme }) => {
             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
-
-        <div className={`nav-backdrop ${isMobileMenuOpen ? 'active' : ''}`} onClick={closeMobileMenu}></div>
-        
-        <nav className={`nav ${isMobileMenuOpen ? 'active' : ''}`}>
-          <ul className="nav-menu">
-            {['home', 'about', 'skills', 'projects', 'certifications', 'contact'].map((item, index) => (
-              <li key={item} style={{ animationDelay: `${index * 0.1}s` }}>
-                <a 
-                  href={`#${item}`} 
-                  className="nav-link" 
-                  onClick={closeMobileMenu}
-                >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
     </header>
   );

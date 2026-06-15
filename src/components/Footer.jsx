@@ -1,15 +1,38 @@
 import React from 'react';
+import { FaArrowUp } from 'react-icons/fa';
 import footer from '../data/footer.json';
 import iconMap from '../data/iconMap';
 
 const Footer = () => {
+  const scrollToTop = () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-section">
-            <h3>{footer.name}</h3>
-            <p>{footer.tagline}</p>
+          {/* Brand + social */}
+          <div className="footer-section footer-brand">
+            <h3 className="footer-name">{footer.name}</h3>
+            <p className="footer-tagline">{footer.tagline}</p>
+            <div className="footer-social">
+              {footer.social.map((item) => {
+                const Icon = iconMap[item.icon];
+                const isMail = item.href.startsWith('mailto');
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={isMail ? undefined : '_blank'}
+                    rel={isMail ? undefined : 'noopener noreferrer'}
+                    aria-label={item.label}
+                    title={item.label}
+                  >
+                    <Icon />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           <div className="footer-section">
@@ -33,31 +56,16 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          <div className="footer-section">
-            <h3>Connect</h3>
-            <p>Let's stay connected and collaborate on amazing projects.</p>
-            <div className="footer-social">
-              {footer.social.map((item) => {
-                const Icon = iconMap[item.icon];
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith('mailto') ? undefined : '_blank'}
-                    rel={item.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                    aria-label={item.label}
-                  >
-                    <Icon />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} {footer.name}. All rights reserved. Built with ❤️ and modern web technologies.</p>
+          <p>
+            &copy; {new Date().getFullYear()} {footer.name}. All rights reserved.
+            Built with <span className="footer-heart">❤️</span> and modern web technologies.
+          </p>
+          <button type="button" className="footer-top-btn" onClick={scrollToTop} aria-label="Back to top">
+            <FaArrowUp /> Top
+          </button>
         </div>
       </div>
     </footer>

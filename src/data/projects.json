@@ -46,5 +46,17 @@
     "tech": ["Flutter", "Dart", "Firebase", "UI Design"],
     "liveLink": null,
     "codeLink": "https://github.com/abdalrahmanhajjo/Fitsync"
+  },
+  {
+    "id": 5,
+    "image": "images/ghafour-logo.jpg",
+    "title": "Ghafour Ice Cream",
+    "category": "E-Commerce",
+    "subtitle": "Full-stack ice cream shop web app",
+    "description": "A full-stack e-commerce web application for an ice cream shop, featuring a product catalog, ordering system, and admin dashboard — built with a React frontend, Node.js/Express backend, and MongoDB database.",
+    "date": "2025",
+    "tech": ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs"],
+    "liveLink": "https://ghafour1919.netlify.app",
+    "codeLink": "https://github.com/abdalrahmanhajjo/ghafour_icecream_demo"
   }
 ]

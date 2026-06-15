@@ -22,23 +22,34 @@ const Contact = () => {
 
   const renderMethod = (item) => {
     const Icon = iconMap[item.icon];
-    return (
-      <div key={item.label} className="contact-method">
+    const isExternal = item.href && item.href.startsWith('http');
+
+    const inner = (
+      <>
         <div className="contact-icon"><Icon /></div>
         <div className="contact-details">
           <h4>{item.label}</h4>
-          {item.href ? (
-            <a
-              href={item.href}
-              target={item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            >
-              {item.value}
-            </a>
-          ) : (
-            <p style={{ color: 'white' }}>{item.value}</p>
-          )}
+          <span className="contact-value">{item.value}</span>
         </div>
+        {item.href && <span className="contact-arrow" aria-hidden="true">→</span>}
+      </>
+    );
+
+    // Whole card is the link when an href exists — bigger, clearer click target
+    return item.href ? (
+      <a
+        key={item.label}
+        href={item.href}
+        className="contact-method contact-method-link"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        aria-label={`${item.label}: ${item.value}`}
+      >
+        {inner}
+      </a>
+    ) : (
+      <div key={item.label} className="contact-method">
+        {inner}
       </div>
     );
   };

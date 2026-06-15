@@ -1,5 +1,5 @@
 {
-  "homepage": ".",
+  "homepage": "/",
   "name": "abdalrahman-portfolio",
   "version": "0.1.0",
   "private": true,
@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "playwright": "^1.60.0"
   }
 }

@@ -38,6 +38,10 @@
   --bg-tertiary: #f1f5f9;
   --bg-card: #ffffff;
   --bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* RGB channels for translucent surfaces (header, buttons) */
+  --bg-rgb: 255, 255, 255;
+  --text-rgb: 15, 23, 42;
   
   /* Semantic Text */
   --text-primary: var(--primary-900);
@@ -151,6 +155,10 @@
   --bg-tertiary: var(--primary-800);
   --bg-card: var(--primary-900);
   --bg-overlay: rgba(0, 0, 0, 0.7);
+
+  /* RGB channels for translucent surfaces (header, buttons) */
+  --bg-rgb: 2, 6, 23;
+  --text-rgb: 248, 250, 252;
   
   --text-primary: var(--primary-50);
   --text-secondary: var(--primary-200);
