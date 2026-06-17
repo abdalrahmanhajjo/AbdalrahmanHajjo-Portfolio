@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AiAssistant from './components/AiAssistant';
 import './App.css';
 import './styles/variables.css';
 import './styles/base.css';
@@ -59,6 +60,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <AiAssistant />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaDownload } from 'react-icons/fa';
-import meImage from '../assets/images/me.png';  // Note the ../ to go up one level from components/
 
+// Served from /public. (The old assets/Me.png was a HEIC file browsers can't render.)
+const meImage = `${import.meta.env.BASE_URL}images/me.jpg`;
 
 const About = () => {
   return (
@@ -15,10 +16,12 @@ const About = () => {
         </div>
 
         <div className="about-grid">
+          {/* Profile photo */}
           <div className="about-image hover-lift" data-aos="fade-right" data-aos-delay="200">
            <img src={meImage} alt="Profile" />
           </div>
 
+          {/* Bio text + CV download */}
           <div className="about-content" data-aos="fade-left" data-aos-delay="200">
             <h2>I'm Abdalrahman Hajjo</h2>
             <br />

@@ -1,10 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import Typed from 'typed.js';
-import { HiOutlineSparkles } from 'react-icons/hi';
+import { FiArrowDownRight } from 'react-icons/fi';
 import hero from '../data/hero.json';
 import iconMap from '../data/iconMap';
 
+// Full cartoon illustration used as the hero centerpiece.
+const CHARACTER = `${import.meta.env.BASE_URL}images/character.webp`;
+
+// Framer-motion variants — a soft, staggered entrance for the intro column.
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
 const Hero = () => {
+  const sectionRef = useRef(null);
+
+  // 3D tilt of the character card, driven by pointer position.
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+
+  // Rotating job-title animation ("Full Stack Developer" → "UI Engineer"…).
   useEffect(() => {
     const typed = new Typed('#typed-role', {
       strings: hero.roles,
@@ -13,121 +33,141 @@ const Hero = () => {
       backDelay: 1500,
       startDelay: 300,
       loop: true,
-      showCursor: true,
-      cursorChar: '|',
+      showCursor: false,
     });
     return () => typed.destroy();
   }, []);
 
+  // Track the pointer to power the spotlight glow + card tilt.
+  const handlePointerMove = (e) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    el.style.setProperty('--mx', `${px * 100}%`);
+    el.style.setProperty('--my', `${py * 100}%`);
+    setTilt({ rx: (0.5 - py) * 6, ry: (px - 0.5) * 9 });
+  };
+
+  const resetTilt = () => setTilt({ rx: 0, ry: 0 });
+
   return (
-    <section className="hero" id="home">
-      <div className="particles" id="particles-js"></div>
-      <div className="gradient-overlay"></div>
-
-      <div className="floating-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
-        <div className="shape shape-4"></div>
+    <section
+      className="hero"
+      id="home"
+      ref={sectionRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetTilt}
+    >
+      {/* Decorative background layers */}
+      <div className="hero-grid" aria-hidden="true" />
+      <div className="hero-aurora" aria-hidden="true">
+        <span className="aurora-blob blob-a" />
+        <span className="aurora-blob blob-b" />
+        <span className="aurora-blob blob-c" />
       </div>
+      <div className="hero-spotlight" aria-hidden="true" />
 
-      <div className="container">
-        <div className="hero-content">
-          <div className="hero-badge animate__animated animate__fadeIn">
-            <span className="badge-dot"></span>
+      <div className="container hero-layout">
+        {/* Left column: intro, CTA buttons, social links */}
+        <motion.div
+          className="hero-content"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div className="hero-badge" variants={item}>
+            <span className="badge-dot" />
             <span>{hero.badge}</span>
-          </div>
+          </motion.div>
 
-          <h1 className="hero-title">
-            <span className="title-line">Hi, I'm</span>
+          <motion.h1 className="hero-title" variants={item}>
+            <span className="title-line title-greet">Hi, I&apos;m</span>
             <span className="title-line gradient-text">{hero.name}</span>
-            <span className="title-line">
-              <span id="typed-role"></span>
-              <span className="typing-cursor">|</span>
+            <span className="title-line title-role">
+              <span id="typed-role" />
+              <span className="typing-cursor" aria-hidden="true" />
             </span>
-          </h1>
+          </motion.h1>
 
-          <p className="hero-subtitle">
+          <motion.p className="hero-subtitle" variants={item}>
             I craft exceptional digital experiences with modern web technologies,
             combining <span className="highlight">creativity</span> with{' '}
             <span className="highlight">technical expertise</span> to build impactful solutions.
-          </p>
+          </motion.p>
 
-          <div className="hero-actions">
+          <motion.div className="hero-actions" variants={item}>
             {hero.buttons.map((btn) => {
               const Icon = iconMap[btn.icon];
               return (
-                <a key={btn.label} href={btn.href} className={`btn btn-${btn.variant} btn-glow`}>
-                  <Icon className="btn-icon" />
+                <a
+                  key={btn.label}
+                  href={btn.href}
+                  className={`btn btn-${btn.variant} btn-glow`}
+                >
+                  {Icon && <Icon className="btn-icon" />}
                   <span>{btn.label}</span>
-                  <span className="btn-hover-effect"></span>
+                  <span className="btn-hover-effect" />
                 </a>
               );
             })}
-          </div>
+          </motion.div>
 
-          <div className="hero-social">
+          <motion.div className="hero-social" variants={item}>
             <span className="social-label">Follow me</span>
             <div className="social-links">
-              {hero.social.map((item) => {
-                const Icon = iconMap[item.icon];
+              {hero.social.map((s) => {
+                const Icon = iconMap[s.icon];
                 return (
-                  <a key={item.label} href={item.href} aria-label={item.label} className="social-link">
-                    <Icon />
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link"
+                  >
+                    {Icon && <Icon />}
                   </a>
                 );
               })}
             </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
 
-      <div className="code-preview glass-card">
-        <div className="code-header">
-          <div className="code-dots">
-            <span className="dot red"></span>
-            <span className="dot yellow"></span>
-            <span className="dot green"></span>
+        {/* Right column: framed cartoon illustration */}
+        <motion.div
+          className="hero-stage"
+          initial={{ opacity: 0, scale: 0.92, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Floating code tokens drifting around the figure */}
+          <div className="code-float" aria-hidden="true">
+            {['</>', '{ }', 'const', '()', '=>', ';', 'React', 'npm'].map((t) => (
+              <span key={t} className="code-token">{t}</span>
+            ))}
           </div>
-          <span className="code-filename">{hero.codePreview.filename}</span>
-        </div>
-        <div className="code-content">
-          <div className="code-line animate__animated animate__fadeIn" style={{ animationDelay: '0.5s' }}>
-            <span className="code-keyword">const</span>
-            <span className="code-function"> {hero.codePreview.varName}</span> = {'{'}
-          </div>
-          {hero.codePreview.fields.map((field, i) => (
-            <div
-              key={field.key}
-              className="code-line animate__animated animate__fadeIn"
-              style={{ animationDelay: `${0.8 + i * 0.3}s` }}
-            >
-              &nbsp;&nbsp;<span className="code-keyword">{field.key}</span>:{' '}
-              {field.type === 'array' ? (
-                <>
-                  [{field.value.map((v, j) => (
-                    <span key={j}><span className="code-string">'{v}'</span>{j < field.value.length - 1 ? ', ' : ''}</span>
-                  ))}]
-                </>
-              ) : (
-                <span className="code-string">'{field.value}'</span>
-              )}
-              {i < hero.codePreview.fields.length - 1 ? ',' : ''}
+
+          <div
+            className="character-scene"
+            style={{
+              transform: `perspective(1100px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+            }}
+          >
+            <div className="character-card">
+              <img src={CHARACTER} alt="Cartoon illustration of Abdalrahman working at a laptop" />
             </div>
-          ))}
-          <div className="code-line animate__animated animate__fadeIn" style={{ animationDelay: `${0.8 + hero.codePreview.fields.length * 0.3}s` }}>{'}'};
           </div>
-          <div className="code-line animate__animated animate__fadeIn" style={{ animationDelay: `${0.8 + (hero.codePreview.fields.length + 1) * 0.3}s` }}>
-            <span className="code-comment">{hero.codePreview.comment}</span>
-          </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="sparkles">
-        <HiOutlineSparkles className="sparkle sparkle-1" />
-        <HiOutlineSparkles className="sparkle sparkle-2" />
-        <HiOutlineSparkles className="sparkle sparkle-3" />
-      </div>
+      {/* Scroll cue */}
+      <a href="#about" className="hero-scroll" aria-label="Scroll to about section">
+        <span className="scroll-text">Scroll</span>
+        <FiArrowDownRight className="scroll-icon" />
+      </a>
     </section>
   );
 };

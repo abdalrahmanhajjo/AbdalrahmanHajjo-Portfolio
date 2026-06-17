@@ -4,10 +4,11 @@ import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 const Header = ({ theme, toggleTheme }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // gate the theme icon until hydrated
 
   useEffect(() => {
     setIsMounted(true);
+    // Add the "scrolled" style once the page moves past the top.
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -15,6 +16,7 @@ const Header = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Open/close the mobile nav and lock body scroll while it's open.
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : '';
@@ -35,6 +37,7 @@ const Header = ({ theme, toggleTheme }) => {
 
         <div className={`nav-backdrop ${isMobileMenuOpen ? 'active' : ''}`} onClick={closeMobileMenu}></div>
 
+        {/* Primary navigation — anchors to each in-page section */}
         <nav className={`nav ${isMobileMenuOpen ? 'active' : ''}`}>
           <ul className="nav-menu">
             {['home', 'about', 'skills', 'projects', 'certifications', 'contact'].map((item, index) => (
@@ -51,6 +54,7 @@ const Header = ({ theme, toggleTheme }) => {
           </ul>
         </nav>
 
+        {/* Theme switch + mobile menu button */}
         <div className="header-controls">
           <button
             className="theme-toggle"

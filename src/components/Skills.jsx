@@ -4,11 +4,11 @@ import skillCategories from '../data/skills.json';
 import iconMap from '../data/iconMap';
 
 const Skills = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(0); // selected skill category
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const active = skillCategories[activeTab];
+  const active = skillCategories[activeTab]; // category shown in the panel
 
   return (
     <section className="skills-section" id="skills" ref={ref}>
@@ -16,7 +16,7 @@ const Skills = () => {
         className="section-header"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 2 }}
       >
         <h2 className="section-title">Technical Expertise</h2>
         <p className="section-subtitle">
@@ -24,11 +24,12 @@ const Skills = () => {
         </p>
       </motion.div>
 
+      {/* Category tabs (Frontend, Backend, …) */}
       <motion.div
         className="skills-tabs"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.15 }}
+        transition={{ duration: 2, delay: 0.15 }}
       >
         {skillCategories.map((category, index) => {
           const Icon = iconMap[category.categoryIcon];
@@ -46,6 +47,7 @@ const Skills = () => {
         })}
       </motion.div>
 
+      {/* Panel of skill pills for the active category — cross-fades on tab change */}
       <div className="skills-panel-wrapper">
         <AnimatePresence mode="wait">
           <motion.div
@@ -54,7 +56,7 @@ const Skills = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.22 }}
+            transition={{ duration: 0.75 }}
           >
             <p className="skills-category-desc">{active.description}</p>
             <div className="skills-grid">

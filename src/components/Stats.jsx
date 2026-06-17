@@ -7,13 +7,14 @@ const Stats = () => {
   const statsRef = useRef(null);
 
   useEffect(() => {
+    // Count each number up from 0 to its target over 2s using rAF.
     const animateCounters = () => {
       const duration = 2000;
       const startTime = performance.now();
 
       const updateCounters = (currentTime) => {
         const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
+        const progress = Math.min(elapsed / duration, 1); // 0 → 1
 
         stats.forEach(stat => {
           const el = document.getElementById(stat.id);
@@ -26,6 +27,7 @@ const Stats = () => {
       requestAnimationFrame(updateCounters);
     };
 
+    // Trigger the count-up only once, when the section scrolls into view.
     const current = statsRef.current;
     const observer = new IntersectionObserver(
       (entries) => {

@@ -25,6 +25,9 @@
   --accent-800: #1e40af;
   --accent-900: #1e3a8a;
   --accent-950: #172554;
+
+  /* RGB channel of --accent-500, for translucent accents (glows, underlines) */
+  --accent-rgb: 59, 130, 246;
   
   /* Extended Color System */
   --success-500: #10b981;

@@ -13,6 +13,7 @@ const Certifications = () => {
           </p>
         </div>
 
+        {/* One card per credential group, each listing its certificates */}
         <div className="certifications-grid">
           {certifications.map((group) => (
             <div
@@ -29,6 +30,7 @@ const Certifications = () => {
                 <ul className="certification-list">
                   {group.items.map((item) => (
                     <li key={item.name} className="certification-item">
+                      {/* Link out when a credential URL exists, otherwise plain text */}
                       {item.link ? (
                         <a
                           href={item.link}

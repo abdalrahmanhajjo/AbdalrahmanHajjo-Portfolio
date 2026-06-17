@@ -3,6 +3,7 @@ import contact from '../data/contact.json';
 import iconMap from '../data/iconMap';
 
 const Contact = () => {
+  // Reveal each contact method with a staggered fade as it scrolls into view.
   useEffect(() => {
     const contactMethods = document.querySelectorAll('.contact-method');
 
@@ -11,7 +12,7 @@ const Contact = () => {
         if (entry.isIntersecting) {
           setTimeout(() => {
             entry.target.classList.add('visible');
-          }, index * 200);
+          }, index * 200); // stagger by position
         }
       });
     }, { threshold: 0.1 });
@@ -20,6 +21,7 @@ const Contact = () => {
     return () => contactMethods.forEach(method => observer.unobserve(method));
   }, []);
 
+  // Render one contact/social entry from the data file.
   const renderMethod = (item) => {
     const Icon = iconMap[item.icon];
     const isExternal = item.href && item.href.startsWith('http');
@@ -65,6 +67,7 @@ const Contact = () => {
         </div>
 
         <div className="contact-grid">
+          {/* Direct contact: email, phone, location */}
           <div className="contact-info" data-aos="fade-right" data-aos-delay="200">
             <h3 style={{ color: 'white', marginBottom: '2rem' }}>Get in Touch</h3>
             <div className="contact-methods">
@@ -72,6 +75,7 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* Social profiles: GitHub, LinkedIn, etc. */}
           <div className="contact-info" data-aos="fade-left" data-aos-delay="200">
             <h3 style={{ color: 'white', marginBottom: '2rem' }}>Connect With Me</h3>
             <div className="contact-methods">

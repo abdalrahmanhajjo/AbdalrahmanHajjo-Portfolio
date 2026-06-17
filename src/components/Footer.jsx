@@ -4,6 +4,7 @@ import footer from '../data/footer.json';
 import iconMap from '../data/iconMap';
 
 const Footer = () => {
+  // Smooth-scroll back to the top of the page (the "Top" button).
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -35,6 +36,7 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* In-page navigation anchors */}
           <div className="footer-section">
             <h3>Quick Links</h3>
             <ul className="footer-links">
@@ -46,6 +48,7 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Services offered (non-interactive list) */}
           <div className="footer-section">
             <h3>Services</h3>
             <ul className="footer-links">

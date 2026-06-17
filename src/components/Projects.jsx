@@ -1,36 +1,38 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaExternalLinkAlt, FaGithub, FaSearch, FaTimes, FaFilter } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import projects from '../data/projects.json';
 import iconMap from '../data/iconMap';
 
-// Icons for the technologies that have one (text-only chip otherwise).
-const TECH_ICONS = {
-  'React.js': 'FaReact',
-  JavaScript: 'SiJavascript',
-  'Node.js': 'FaNodeJs',
-  'Express.js': 'SiExpress',
-  MongoDB: 'SiMongodb',
+const TECH_ICONS = { // Icons used only for filter chips that have a matching icon.
+  'React.js': 'FaReact', // React.js filter chip uses the React icon.
+  JavaScript: 'SiJavascript', // JavaScript filter chip uses the JavaScript icon.
+  'Node.js': 'FaNodeJs', // Node.js filter chip uses the Node icon.
+  'Express.js': 'SiExpress', // Express.js filter chip uses the Express icon.
+  MongoDB: 'SiMongodb', // MongoDB filter chip uses the MongoDB icon.
 };
 
-// Chip list = technologies that actually group projects (used in 2+),
-// ordered by how common they are. The long tail stays reachable via search.
-const TECH_CHIPS = (() => {
-  const counts = new Map();
-  projects.forEach((p) => p.tech.forEach((t) => counts.set(t, (counts.get(t) || 0) + 1)));
-  const techs = [...counts.entries()]
-    .filter(([, n]) => n >= 2)
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .map(([t]) => t);
-  return ['All', ...techs];
-})();
+const techCounts = projects // Start with all projects to count their technologies.
+  .flatMap(({ tech }) => tech) // Collect every project's tech array into one big list.
+  .reduce((counts, tech) => { // Convert the tech list into counts like { React: 3 }.
+    counts[tech] = (counts[tech] || 0) + 1; // Add 1 each time this technology appears.
+    return counts; // Return the updated counts object for the next loop.
+  }, {}); // Start counting from an empty object.
 
-// Precompute one lowercase haystack per project for instant text search.
-const INDEX = projects.map((p) =>
-  [p.title, p.subtitle, p.category, p.description, ...p.tech].join(' ').toLowerCase()
-);
+const TECH_CHIPS = [ // This becomes the list of technology filter buttons.
+  'All', // Always include a button that shows every project.
+  ...Object.entries(techCounts) // Turn counts object into pairs like ['React.js', 3].
+    .filter(([, count]) => count >= 2) // Only show tech used in 2 or more projects.
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])) // Most common first, alphabetically if tied.
+    .map(([tech]) => tech), // Keep only the technology name for the chip label.
+];
 
-const Buttons = ({ project }) => (
+// Assets live in `public/`, which Vite serves from the site root.
+const imagePath = (image) => `${import.meta.env.BASE_URL}${image}`;
+const searchableText = ({ title, subtitle, category, description, tech }) => // Build the text that search checks.
+  [title, subtitle, category, description, ...tech].join(' ').toLowerCase(); // Search across title, text, category, and tech.
+
+const ProjectButtons = ({ project }) => (
   <div className="project-actions">
     {project.liveLink ? (
       <a href={project.liveLink} className="project-btn project-btn-live" target="_blank" rel="noopener noreferrer">
@@ -47,11 +49,17 @@ const Buttons = ({ project }) => (
   </div>
 );
 
+const TechPills = ({ tech, featured = false }) => (
+  <div className={`project-tech${featured ? ' featured-tech' : ''}`}>
+    {tech.map((item) => <span key={item} className="tech-pill">{item}</span>)}
+  </div>
+);
+
 const ProjectCard = ({ project, num }) => (
   <div className="project-card">
     <div className="project-img-wrap">
       <img
-        src={`${process.env.PUBLIC_URL}/${project.image}`}
+        src={imagePath(project.image)}
         alt={project.title}
         className="project-img"
         loading="lazy"
@@ -66,25 +74,53 @@ const ProjectCard = ({ project, num }) => (
       <p className="project-sub">{project.subtitle}</p>
       <p className="project-desc">{project.description}</p>
 
-      <div className="project-tech">
-        {project.tech.map((t) => <span key={t} className="tech-pill">{t}</span>)}
-      </div>
-
-      <Buttons project={project} />
+      <TechPills tech={project.tech} />
+      <ProjectButtons project={project} />
     </div>
   </div>
+);
+
+const FeaturedProject = ({ project, anim }) => (
+  <motion.div className="project-featured" {...anim(0.18)}>
+    <div className="featured-img-wrap">
+      <img
+        src={imagePath(project.image)}
+        alt={project.title}
+        className="featured-img"
+        loading="lazy"
+      />
+    </div>
+
+    <div className="featured-body">
+      <div className="featured-top">
+        <span className="featured-badge">Featured Project</span>
+        <span className="featured-date">{project.date}</span>
+      </div>
+
+      <span className="featured-num" aria-hidden="true">01</span>
+
+      <h3 className="featured-title">{project.title}</h3>
+      <p className="featured-subtitle">{project.subtitle}</p>
+      <p className="featured-desc">{project.description}</p>
+
+      <TechPills tech={project.tech} featured />
+      <ProjectButtons project={project} />
+    </div>
+  </motion.div>
 );
 
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [query, setQuery] = useState('');
-  const [activeTech, setActiveTech] = useState('All');
-  const [showFilters, setShowFilters] = useState(false); // mobile chip panel
+  const [query, setQuery] = useState(''); // Stores what the user types in the search box.
+  const [activeTech, setActiveTech] = useState('All'); // Stores the selected technology filter.
+  const [showFilters, setShowFilters] = useState(false); // Opens/closes the mobile filter chips panel.
+  const q = query.trim().toLowerCase(); // Cleans the search text so matching is easier.
+  const isDefault = activeTech === 'All' && !q; // True when no search and no filter are active.
 
-  const pickTech = (t) => {
-    setActiveTech(t);
-    setShowFilters(false); // collapse the panel on mobile after choosing
+  const pickTech = (tech) => { // Runs when a technology chip is clicked.
+    setActiveTech(tech); // Save the clicked technology as the active filter.
+    setShowFilters(false); // Close the mobile filter panel after choosing.
   };
 
   const anim = (delay = 0) => ({
@@ -93,20 +129,12 @@ const Projects = () => {
     transition: { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] },
   });
 
-  const q = query.trim().toLowerCase();
-  const isDefault = activeTech === 'All' && !q;
-
-  // One pass: match the chosen technology AND the search text.
-  const filtered = useMemo(
-    () => projects.filter((p, i) => {
-      const inTech = activeTech === 'All' || p.tech.includes(activeTech);
-      const inQuery = !q || INDEX[i].includes(q);
-      return inTech && inQuery;
-    }),
-    [activeTech, q]
-  );
-
-  const [featured, ...rest] = filtered;
+  const filtered = projects.filter((project) => { // Create the visible project list.
+    const matchesTech = activeTech === 'All' || project.tech.includes(activeTech); // Match selected tech, unless filter is All.
+    const matchesQuery = !q || searchableText(project).includes(q); // Match search text, unless search is empty.
+    return matchesTech && matchesQuery; // Keep only projects that match both filter and search.
+  });
+  const [featured, ...rest] = filtered; // First result is featured; the rest go in the grid.
 
   return (
     <section className="projects-section" id="projects" ref={ref}>
@@ -116,10 +144,10 @@ const Projects = () => {
           <p className="section-subtitle">A showcase of my recent work and creative solutions</p>
         </motion.div>
 
-        {/* ── Search + mobile filter toggle ── */}
         <motion.div className="project-search" {...anim(0.06)}>
           <div className="search-row">
             <div className="search-box">
+              {/* Search icon shown inside the input. */}
               <FaSearch className="search-icon" />
               <input
                 type="text"
@@ -129,6 +157,7 @@ const Projects = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 aria-label="Search projects"
               />
+              {/* Show the clear button only when the search box has text. */}
               {query && (
                 <button type="button" className="search-clear" onClick={() => setQuery('')} aria-label="Clear search">
                   <FaTimes />
@@ -145,12 +174,12 @@ const Projects = () => {
             >
               <FaFilter />
               <span>Filters</span>
+              {/* Dot means a technology filter is selected. */}
               {activeTech !== 'All' && <span className="filter-toggle-dot" aria-hidden="true" />}
             </button>
           </div>
         </motion.div>
 
-        {/* ── Technology chips (collapsible on mobile) ── */}
         <motion.div
           id="tech-filters"
           className={`quick-filters ${showFilters ? 'open' : ''}`}
@@ -159,6 +188,7 @@ const Projects = () => {
           {...anim(0.1)}
         >
           {TECH_CHIPS.map((t) => {
+            // Pick an icon for this filter chip if TECH_ICONS has one.
             const Icon = TECH_ICONS[t] ? iconMap[TECH_ICONS[t]] : null;
             return (
               <button
@@ -176,8 +206,8 @@ const Projects = () => {
           })}
         </motion.div>
 
-        {/* ── Result count ── */}
         <motion.p className="search-meta" {...anim(0.14)}>
+          {/* Count updates automatically because it uses the filtered array. */}
           <strong>{filtered.length}</strong> of {projects.length} project{projects.length !== 1 ? 's' : ''}
           {!isDefault ? ' match your filter' : ''}
         </motion.p>
@@ -186,38 +216,7 @@ const Projects = () => {
           <p className="projects-empty">No projects match your filter.</p>
         ) : isDefault ? (
           <>
-            {/* ── Featured card ── */}
-            <motion.div className="project-featured" {...anim(0.18)}>
-              <div className="featured-img-wrap">
-                <img
-                  src={`${process.env.PUBLIC_URL}/${featured.image}`}
-                  alt={featured.title}
-                  className="featured-img"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="featured-body">
-                <div className="featured-top">
-                  <span className="featured-badge">Featured Project</span>
-                  <span className="featured-date">{featured.date}</span>
-                </div>
-
-                <span className="featured-num" aria-hidden="true">01</span>
-
-                <h3 className="featured-title">{featured.title}</h3>
-                <p className="featured-subtitle">{featured.subtitle}</p>
-                <p className="featured-desc">{featured.description}</p>
-
-                <div className="project-tech featured-tech">
-                  {featured.tech.map((t) => <span key={t} className="tech-pill">{t}</span>)}
-                </div>
-
-                <Buttons project={featured} />
-              </div>
-            </motion.div>
-
-            {/* ── Regular grid ── */}
+            <FeaturedProject project={featured} anim={anim} />
             <div className="projects-grid">
               {rest.map((project, i) => (
                 <ProjectCard key={project.id} project={project} num={`0${i + 2}`} />
@@ -225,7 +224,6 @@ const Projects = () => {
             </div>
           </>
         ) : (
-          /* ── Filtered grid — one cheap fade keyed to the active filter ── */
           <motion.div
             key={`${activeTech}-${q}`}
             className="projects-grid"
