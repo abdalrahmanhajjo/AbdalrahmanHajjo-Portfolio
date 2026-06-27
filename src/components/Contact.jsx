@@ -61,8 +61,8 @@ const Contact = () => {
       <div className="container">
         <div className="contact-content" data-aos="fade-up">
           <h2 className="section-title" style={{ color: 'white' }}>Let's Work Together</h2>
-          <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            Ready to bring your ideas to life? Get in touch with me directly.
+          <p className="section-subtitle" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+            Have a project in mind or a role to fill? Reach out directly.
           </p>
         </div>
 

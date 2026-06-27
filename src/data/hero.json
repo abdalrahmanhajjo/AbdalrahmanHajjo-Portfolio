@@ -3,12 +3,12 @@
   "badge": "Available for freelance work",
   "roles": [
     "Full Stack Developer",
-    "UI/UX Enthusiast",
-    "Problem Solver",
-    "Tech Innovator",
-    "Creative Coder"
+    "React & Node.js Developer",
+    "Flutter Developer",
+    "UI Engineer",
+    "Problem Solver"
   ],
-  "subtitle": "I craft exceptional digital experiences with modern web technologies, combining <highlight>creativity</highlight> with <highlight>technical expertise</highlight> to build impactful solutions.",
+  "subtitle": "I build fast, reliable web and mobile apps with React, Node.js, and Flutter, from first sketch to production.",
   "buttons": [
     { "label": "View My Work", "href": "#projects", "icon": "FaRocket", "variant": "primary" },
     { "label": "Let's Talk", "href": "#contact", "icon": "FaPaperPlane", "variant": "secondary" }

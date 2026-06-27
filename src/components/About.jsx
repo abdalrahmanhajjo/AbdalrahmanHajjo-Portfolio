@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaDownload } from 'react-icons/fa';
 
-// Served from /public. (The old assets/Me.png was a HEIC file browsers can't render.)
+// Web-ready profile photo served from /public/images.
 const meImage = `${import.meta.env.BASE_URL}images/me.jpg`;
 
 const About = () => {
@@ -11,7 +11,7 @@ const About = () => {
         <div className="section-header" data-aos="fade-up">
           <h2 className="section-title">About Me</h2>
           <p className="section-subtitle">
-            Passionate about creating digital solutions that make a difference
+            Computer Science finalist and full-stack developer shipping real products
           </p>
         </div>
 
@@ -26,9 +26,9 @@ const About = () => {
             <h2>I'm Abdalrahman Hajjo</h2>
             <br />
             <p>
-              A passionate Full Stack Developer based in Tripoli, Lebanon. 
-              I specialize in building modern web applications with clean, 
-              efficient code and exceptional user experiences.
+              A full-stack developer based in Tripoli, Lebanon. I build modern
+              web and mobile applications with clean, maintainable code and
+              interfaces that stay out of the user's way.
             </p>
             <br />
             <p>

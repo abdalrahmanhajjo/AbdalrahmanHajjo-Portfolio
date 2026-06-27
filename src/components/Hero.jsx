@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Typed from 'typed.js';
-import { FiArrowDownRight } from 'react-icons/fi';
 import hero from '../data/hero.json';
 import iconMap from '../data/iconMap';
 
@@ -92,9 +91,9 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p className="hero-subtitle" variants={item}>
-            I craft exceptional digital experiences with modern web technologies,
-            combining <span className="highlight">creativity</span> with{' '}
-            <span className="highlight">technical expertise</span> to build impactful solutions.
+            I build <span className="highlight">fast, reliable</span> web and mobile apps with{' '}
+            React, Node.js, and Flutter, from first sketch to{' '}
+            <span className="highlight">production</span>.
           </motion.p>
 
           <motion.div className="hero-actions" variants={item}>
@@ -143,13 +142,6 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Floating code tokens drifting around the figure */}
-          <div className="code-float" aria-hidden="true">
-            {['</>', '{ }', 'const', '()', '=>', ';', 'React', 'npm'].map((t) => (
-              <span key={t} className="code-token">{t}</span>
-            ))}
-          </div>
-
           <div
             className="character-scene"
             style={{
@@ -162,12 +154,6 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Scroll cue */}
-      <a href="#about" className="hero-scroll" aria-label="Scroll to about section">
-        <span className="scroll-text">Scroll</span>
-        <FiArrowDownRight className="scroll-icon" />
-      </a>
     </section>
   );
 };

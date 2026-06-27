@@ -16,7 +16,7 @@ const Skills = () => {
         className="section-header"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <h2 className="section-title">Technical Expertise</h2>
         <p className="section-subtitle">
@@ -29,7 +29,7 @@ const Skills = () => {
         className="skills-tabs"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 2, delay: 0.15 }}
+        transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
       >
         {skillCategories.map((category, index) => {
           const Icon = iconMap[category.categoryIcon];
@@ -56,7 +56,7 @@ const Skills = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.75 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="skills-category-desc">{active.description}</p>
             <div className="skills-grid">

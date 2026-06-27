@@ -5,6 +5,7 @@ const Header = ({ theme, toggleTheme }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false); // gate the theme icon until hydrated
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     setIsMounted(true);
@@ -14,6 +15,26 @@ const Header = ({ theme, toggleTheme }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scrollspy: mark the nav link for whichever section is in view.
+  useEffect(() => {
+    const ids = ['home', 'about', 'skills', 'projects', 'certifications', 'contact'];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   // Open/close the mobile nav and lock body scroll while it's open.
@@ -44,7 +65,8 @@ const Header = ({ theme, toggleTheme }) => {
               <li key={item} style={{ animationDelay: `${index * 0.1}s` }}>
                 <a
                   href={`#${item}`}
-                  className="nav-link"
+                  className={`nav-link ${activeSection === item ? 'active' : ''}`}
+                  aria-current={activeSection === item ? 'true' : undefined}
                   onClick={closeMobileMenu}
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}

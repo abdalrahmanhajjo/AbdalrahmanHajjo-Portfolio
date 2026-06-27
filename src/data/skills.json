@@ -15,7 +15,7 @@
     "title": "Backend",
     "categoryIcon": "FaNodeJs",
     "description": "Server-side applications and APIs",
-    "color": "var(--accent-600)",
+    "color": "var(--accent-500)",
     "skills": [
       { "name": "Node.js", "icon": "FaNodeJs" },
       { "name": "Express", "icon": "SiExpress" },
@@ -25,7 +25,7 @@
     "title": "Databases",
     "categoryIcon": "SiPostgresql",
     "description": "Data storage and management",
-    "color": "var(--accent-700)",
+    "color": "var(--accent-500)",
     "skills": [
       { "name": "PostgreSQL", "icon": "SiPostgresql" },
       { "name": "MongoDB", "icon": "SiMongodb" }    ]
@@ -34,7 +34,7 @@
     "title": "DevOps",
     "categoryIcon": "FaDocker",
     "description": "Infrastructure and deployment",
-    "color": "var(--accent-800)",
+    "color": "var(--accent-500)",
     "skills": [
       { "name": "Docker", "icon": "FaDocker" },
       { "name": "AWS", "icon": "FaAws" },
@@ -45,7 +45,7 @@
     "title": "Testing",
     "categoryIcon": "SiJest",
     "description": "Quality assurance and validation",
-    "color": "var(--accent-900)",
+    "color": "var(--accent-500)",
     "skills": [
       { "name": "Jest", "icon": "SiJest" },
       { "name": "Unit Testing", "icon": "FaTools" },

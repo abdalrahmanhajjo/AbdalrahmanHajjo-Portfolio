@@ -13,21 +13,24 @@
   --primary-900: #0f172a;
   --primary-950: #020617;
   
-  /* Accent Color Palette */
-  --accent-50: #eff6ff;
-  --accent-100: #dbeafe;
-  --accent-200: #bfdbfe;
-  --accent-300: #93c5fd;
-  --accent-400: #60a5fa;
-  --accent-500: #3b82f6;
-  --accent-600: #2563eb;
-  --accent-700: #1d4ed8;
-  --accent-800: #1e40af;
-  --accent-900: #1e3a8a;
-  --accent-950: #172554;
+  /* Accent Color Palette — ONE accent (signal lime). No second hue. */
+  --accent-50: #f7fde0;
+  --accent-100: #eefabd;
+  --accent-200: #e3f78f;
+  --accent-300: #d8f55a;
+  --accent-400: #d1f43a;
+  --accent-500: #c9f31d;
+  --accent-600: #a8cc12;
+  --accent-700: #7f9a10;
+  --accent-800: #627513;
+  --accent-900: #4f5d15;
+  --accent-950: #2b3406;
 
   /* RGB channel of --accent-500, for translucent accents (glows, underlines) */
-  --accent-rgb: 59, 130, 246;
+  --accent-rgb: 201, 243, 29;
+
+  /* Lime is bright — text sitting ON an accent fill must be near-black. */
+  --on-accent: #0c0d08;
   
   /* Extended Color System */
   --success-500: #10b981;
@@ -36,15 +39,15 @@
   --info-500: #06b6d4;
   
   /* Semantic Backgrounds */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
+  --bg-primary: #fbfcfe;
+  --bg-secondary: #f1f4f9;
+  --bg-tertiary: #e7edf5;
   --bg-card: #ffffff;
-  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --bg-overlay: rgba(10, 14, 22, 0.5);
 
   /* RGB channels for translucent surfaces (header, buttons) */
-  --bg-rgb: 255, 255, 255;
-  --text-rgb: 15, 23, 42;
+  --bg-rgb: 251, 252, 254;
+  --text-rgb: 12, 17, 29;
   
   /* Semantic Text */
   --text-primary: var(--primary-900);
@@ -55,15 +58,15 @@
   --text-muted: var(--primary-400);
   
   /* Borders */
-  --border-light: 1px solid rgba(0, 0, 0, 0.1);
-  --border-medium: 1px solid rgba(0, 0, 0, 0.2);
-  --border-dark: 1px solid rgba(0, 0, 0, 0.3);
+  --border-light: 1px solid rgba(12, 17, 29, 0.09);
+  --border-medium: 1px solid rgba(12, 17, 29, 0.16);
+  --border-dark: 1px solid rgba(12, 17, 29, 0.28);
   --border-radius: var(--radius-md);
-  
-  /* Special Effects */
-  --bg-accent: linear-gradient(135deg, var(--accent-500), var(--accent-600));
-  --bg-glass: rgba(255, 255, 255, 0.15);
-  --bg-glass-strong: rgba(255, 255, 255, 0.25);
+
+  /* Special Effects — solid lime fill (pair with --on-accent text) */
+  --bg-accent: var(--accent-500);
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-glass-strong: rgba(255, 255, 255, 0.9);
   --bg-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   
   /* ========== Spacing System ========== */
@@ -80,6 +83,10 @@
   --space-5xl: 8rem;
   
   /* ========== Typography ========== */
+  --font-display: 'DM Sans', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -111,17 +118,17 @@
   --radius-full: 9999px;
   --radius-pill: 9999px;
   
-  /* ========== Shadows ========== */
-  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  
-  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-  --shadow-accent: 0 0 0 3px rgba(59, 130, 246, 0.3);
-  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+  /* ========== Shadows — tinted toward slate, never pure black ========== */
+  --shadow-xs: 0 1px 2px 0 rgb(12 17 29 / 0.06);
+  --shadow-sm: 0 2px 6px -1px rgb(12 17 29 / 0.08), 0 1px 2px -1px rgb(12 17 29 / 0.06);
+  --shadow-md: 0 8px 18px -6px rgb(12 17 29 / 0.12), 0 2px 6px -3px rgb(12 17 29 / 0.08);
+  --shadow-lg: 0 16px 32px -10px rgb(12 17 29 / 0.14), 0 6px 12px -6px rgb(12 17 29 / 0.1);
+  --shadow-xl: 0 28px 50px -14px rgb(12 17 29 / 0.18), 0 10px 18px -10px rgb(12 17 29 / 0.12);
+  --shadow-2xl: 0 40px 70px -20px rgb(12 17 29 / 0.28);
+
+  --shadow-inner: inset 0 2px 4px 0 rgb(12 17 29 / 0.05);
+  --shadow-accent: 0 0 0 3px rgba(var(--accent-rgb), 0.3);
+  --shadow-glow: 0 12px 30px -10px rgba(var(--accent-rgb), 0.45);
   
   /* ========== Transitions & Animations ========== */
   --transition-fast: 100ms ease;
@@ -152,41 +159,41 @@
 
 /* ========== Dark Mode ========== */
 [data-theme="dark"] {
-  /* Color System */
-  --bg-primary: var(--primary-950);
-  --bg-secondary: var(--primary-900);
-  --bg-tertiary: var(--primary-800);
-  --bg-card: var(--primary-900);
-  --bg-overlay: rgba(0, 0, 0, 0.7);
+  /* Color System — Noxfolio-style near-black, neutral surfaces */
+  --bg-primary: #131313;
+  --bg-secondary: #1f1f1f;
+  --bg-tertiary: #262626;
+  --bg-card: #1a1a1a;
+  --bg-overlay: rgba(0, 0, 0, 0.72);
 
   /* RGB channels for translucent surfaces (header, buttons) */
-  --bg-rgb: 2, 6, 23;
-  --text-rgb: 248, 250, 252;
-  
-  --text-primary: var(--primary-50);
-  --text-secondary: var(--primary-200);
-  --text-tertiary: var(--primary-400);
+  --bg-rgb: 19, 19, 19;
+  --text-rgb: 255, 255, 255;
+
+  --text-primary: rgba(255, 255, 255, 0.72);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-tertiary: rgba(255, 255, 255, 0.42);
   --text-heading: #ffffff;
-  --text-inverse: var(--primary-950);
-  --text-muted: var(--primary-500);
-  
+  --text-inverse: #070707;
+  --text-muted: rgba(255, 255, 255, 0.35);
+
   /* Borders */
-  --border-light: 1px solid rgba(255, 255, 255, 0.1);
-  --border-medium: 1px solid rgba(255, 255, 255, 0.2);
-  --border-dark: 1px solid rgba(255, 255, 255, 0.3);
-  
+  --border-light: 1px solid rgba(255, 255, 255, 0.09);
+  --border-medium: 1px solid rgba(255, 255, 255, 0.16);
+  --border-dark: 1px solid rgba(255, 255, 255, 0.26);
+
   /* Special Effects */
-  --bg-glass: rgba(15, 23, 42, 0.7);
-  --bg-glass-strong: rgba(15, 23, 42, 0.9);
-  
-  /* Shadows */
-  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.25);
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
-  
-  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.15);
+  --bg-glass: rgba(255, 255, 255, 0.045);
+  --bg-glass-strong: rgba(255, 255, 255, 0.08);
+
+  /* Shadows — deeper in dark, still slate-tinted */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 2px 6px -1px rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 8px 18px -6px rgb(0 0 0 / 0.55), 0 2px 6px -3px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 16px 32px -10px rgb(0 0 0 / 0.6), 0 6px 12px -6px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 28px 50px -14px rgb(0 0 0 / 0.65), 0 10px 18px -10px rgb(0 0 0 / 0.55);
+
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.3);
 }
 
 /* ========== Animations ========== */

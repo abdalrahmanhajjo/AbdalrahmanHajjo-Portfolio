@@ -64,7 +64,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <p>
             &copy; {new Date().getFullYear()} {footer.name}. All rights reserved.
-            Built with <span className="footer-heart">❤️</span> and modern web technologies.
+            Designed and built with React.
           </p>
           <button type="button" className="footer-top-btn" onClick={scrollToTop} aria-label="Back to top">
             <FaArrowUp /> Top
