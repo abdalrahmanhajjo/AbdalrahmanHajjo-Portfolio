@@ -18,7 +18,14 @@ const About = () => {
         <div className="about-grid">
           {/* Profile photo */}
           <div className="about-image hover-lift" data-aos="fade-right" data-aos-delay="200">
-           <img src={meImage} alt="Profile" />
+           <img
+             src={meImage}
+             alt="Portrait of Abdalrahman Hajjo"
+             width="1320"
+             height="1600"
+             loading="lazy"
+             decoding="async"
+           />
           </div>
 
           {/* Bio text + CV download */}

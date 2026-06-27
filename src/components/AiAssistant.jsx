@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { FiX, FiSend } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi';
 import { askCV, SUGGESTIONS, profile } from '../data/cv';
@@ -73,7 +73,7 @@ const AiAssistant = () => {
   return (
     <>
       {/* Launcher */}
-      <motion.button
+      <m.button
         className="ai-fab"
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close AI assistant' : 'Ask AI about Abdalrahman'}
@@ -82,11 +82,11 @@ const AiAssistant = () => {
       >
         {open ? <FiX /> : <HiSparkles />}
         {!open && <span className="ai-fab-pulse" aria-hidden="true" />}
-      </motion.button>
+      </m.button>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             className="ai-panel"
             role="dialog"
             aria-label="Ask AI about Abdalrahman"
@@ -142,7 +142,7 @@ const AiAssistant = () => {
                 <FiSend />
               </button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { m } from 'framer-motion';
 import Typed from 'typed.js';
 import hero from '../data/hero.json';
 import iconMap from '../data/iconMap';
@@ -19,9 +19,8 @@ const item = {
 
 const Hero = () => {
   const sectionRef = useRef(null);
-
-  // 3D tilt of the character card, driven by pointer position.
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const sceneRef = useRef(null); // the tilting character card
+  const frame = useRef(0);       // pending rAF id, 0 = none
 
   // Rotating job-title animation ("Full Stack Developer" → "UI Engineer"…).
   useEffect(() => {
@@ -37,19 +36,37 @@ const Hero = () => {
     return () => typed.destroy();
   }, []);
 
-  // Track the pointer to power the spotlight glow + card tilt.
+  // Cancel any pending tilt frame on unmount.
+  useEffect(() => () => cancelAnimationFrame(frame.current), []);
+
+  // Pointer-driven spotlight + 3D tilt. Written straight to the DOM and
+  // coalesced into one rAF per frame, so moving the mouse never triggers a
+  // React re-render (which would re-run all the motion children).
   const handlePointerMove = (e) => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width;
-    const py = (e.clientY - r.top) / r.height;
-    el.style.setProperty('--mx', `${px * 100}%`);
-    el.style.setProperty('--my', `${py * 100}%`);
-    setTilt({ rx: (0.5 - py) * 6, ry: (px - 0.5) * 9 });
+    const { clientX, clientY } = e;
+    if (frame.current) return;
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      const el = sectionRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const px = (clientX - r.left) / r.width;
+      const py = (clientY - r.top) / r.height;
+      el.style.setProperty('--mx', `${px * 100}%`);
+      el.style.setProperty('--my', `${py * 100}%`);
+      const scene = sceneRef.current;
+      if (scene) {
+        scene.style.transform =
+          `perspective(1100px) rotateX(${(0.5 - py) * 6}deg) rotateY(${(px - 0.5) * 9}deg)`;
+      }
+    });
   };
 
-  const resetTilt = () => setTilt({ rx: 0, ry: 0 });
+  const resetTilt = () => {
+    if (sceneRef.current) {
+      sceneRef.current.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg)';
+    }
+  };
 
   return (
     <section
@@ -70,33 +87,33 @@ const Hero = () => {
 
       <div className="container hero-layout">
         {/* Left column: intro, CTA buttons, social links */}
-        <motion.div
+        <m.div
           className="hero-content"
           variants={container}
           initial="hidden"
           animate="show"
         >
-          <motion.div className="hero-badge" variants={item}>
+          <m.div className="hero-badge" variants={item}>
             <span className="badge-dot" />
             <span>{hero.badge}</span>
-          </motion.div>
+          </m.div>
 
-          <motion.h1 className="hero-title" variants={item}>
+          <m.h1 className="hero-title" variants={item}>
             <span className="title-line title-greet">Hi, I&apos;m</span>
             <span className="title-line gradient-text">{hero.name}</span>
             <span className="title-line title-role">
               <span id="typed-role" />
               <span className="typing-cursor" aria-hidden="true" />
             </span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p className="hero-subtitle" variants={item}>
+          <m.p className="hero-subtitle" variants={item}>
             I build <span className="highlight">fast, reliable</span> web and mobile apps with{' '}
             React, Node.js, and Flutter, from first sketch to{' '}
             <span className="highlight">production</span>.
-          </motion.p>
+          </m.p>
 
-          <motion.div className="hero-actions" variants={item}>
+          <m.div className="hero-actions" variants={item}>
             {hero.buttons.map((btn) => {
               const Icon = iconMap[btn.icon];
               return (
@@ -111,9 +128,9 @@ const Hero = () => {
                 </a>
               );
             })}
-          </motion.div>
+          </m.div>
 
-          <motion.div className="hero-social" variants={item}>
+          <m.div className="hero-social" variants={item}>
             <span className="social-label">Follow me</span>
             <div className="social-links">
               {hero.social.map((s) => {
@@ -132,27 +149,29 @@ const Hero = () => {
                 );
               })}
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* Right column: framed cartoon illustration */}
-        <motion.div
+        <m.div
           className="hero-stage"
           initial={{ opacity: 0, scale: 0.92, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div
-            className="character-scene"
-            style={{
-              transform: `perspective(1100px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-            }}
-          >
+          <div className="character-scene" ref={sceneRef}>
             <div className="character-card">
-              <img src={CHARACTER} alt="Cartoon illustration of Abdalrahman working at a laptop" />
+              <img
+                src={CHARACTER}
+                alt="Cartoon illustration of Abdalrahman working at a laptop"
+                width="900"
+                height="1059"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

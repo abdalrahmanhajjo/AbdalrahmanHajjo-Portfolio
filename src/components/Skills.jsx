@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { m, AnimatePresence, useInView } from 'framer-motion';
 import skillCategories from '../data/skills.json';
 import iconMap from '../data/iconMap';
 
@@ -12,7 +12,7 @@ const Skills = () => {
 
   return (
     <section className="skills-section" id="skills" ref={ref}>
-      <motion.div
+      <m.div
         className="section-header"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -22,10 +22,10 @@ const Skills = () => {
         <p className="section-subtitle">
           Technologies I use to craft modern, scalable, and efficient solutions
         </p>
-      </motion.div>
+      </m.div>
 
       {/* Category tabs (Frontend, Backend, …) */}
-      <motion.div
+      <m.div
         className="skills-tabs"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -45,12 +45,12 @@ const Skills = () => {
             </button>
           );
         })}
-      </motion.div>
+      </m.div>
 
       {/* Panel of skill pills for the active category — cross-fades on tab change */}
       <div className="skills-panel-wrapper">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab}
             className="skills-panel"
             initial={{ opacity: 0, y: 16 }}
@@ -63,7 +63,7 @@ const Skills = () => {
               {active.skills.map((skill, i) => {
                 const SkillIcon = iconMap[skill.icon];
                 return (
-                  <motion.div
+                  <m.div
                     key={skill.name}
                     className="skill-pill"
                     initial={{ opacity: 0, scale: 0.85 }}
@@ -73,11 +73,11 @@ const Skills = () => {
                   >
                     <SkillIcon className="pill-icon" />
                     <span>{skill.name}</span>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </section>

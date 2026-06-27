@@ -164,3 +164,21 @@
 .stat-card:nth-child(2) { animation-delay: 0.3s; }
 .stat-card:nth-child(3) { animation-delay: 0.5s; }
 .stat-card:nth-child(4) { animation-delay: 0.7s; }
+
+/* ===== Performance: skip rendering offscreen sections =====
+   Applied only to sections that already clip overflow, so paint
+   containment introduces no visual change. The remembered size keeps
+   the scrollbar stable once a section has rendered once. */
+.stats-section,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+
+/* Honor reduced-motion for the continuously-running decorative loops. */
+@media (prefers-reduced-motion: reduce) {
+  .floating-element,
+  .character-card,
+  .ai-fab-pulse,
+  .badge-dot { animation: none !important; }
+}

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useMemo } from 'react';
 import { FaExternalLinkAlt, FaGithub, FaSearch, FaTimes, FaFilter } from 'react-icons/fa';
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import projects from '../data/projects.json';
 import iconMap from '../data/iconMap';
 
@@ -55,6 +55,7 @@ const ProjectCard = ({ project, num }) => (
         alt={project.title}
         className="project-img"
         loading="lazy"
+                decoding="async"
       />
       <div className="project-img-overlay" />
       <span className="card-category">{project.category}</span>
@@ -111,13 +112,13 @@ const Projects = () => {
   return (
     <section className="projects-section" id="projects" ref={ref}>
       <div className="container">
-        <motion.div className="section-header" {...anim()}>
+        <m.div className="section-header" {...anim()}>
           <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">Recent work across web, mobile, and full-stack platforms</p>
-        </motion.div>
+        </m.div>
 
         {/* ── Search + mobile filter toggle ── */}
-        <motion.div className="project-search" {...anim(0.06)}>
+        <m.div className="project-search" {...anim(0.06)}>
           <div className="search-row">
             <div className="search-box">
               <FaSearch className="search-icon" />
@@ -148,10 +149,10 @@ const Projects = () => {
               {activeTech !== 'All' && <span className="filter-toggle-dot" aria-hidden="true" />}
             </button>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* ── Technology chips (collapsible on mobile) ── */}
-        <motion.div
+        <m.div
           id="tech-filters"
           className={`quick-filters ${showFilters ? 'open' : ''}`}
           role="tablist"
@@ -174,26 +175,27 @@ const Projects = () => {
               </button>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* ── Result count ── */}
-        <motion.p className="search-meta" {...anim(0.14)}>
+        <m.p className="search-meta" {...anim(0.14)}>
           <strong>{filtered.length}</strong> of {projects.length} project{projects.length !== 1 ? 's' : ''}
           {!isDefault ? ' match your filter' : ''}
-        </motion.p>
+        </m.p>
 
         {filtered.length === 0 ? (
           <p className="projects-empty">No projects match your filter.</p>
         ) : isDefault ? (
           <>
             {/* ── Featured card ── */}
-            <motion.div className="project-featured" {...anim(0.18)}>
+            <m.div className="project-featured" {...anim(0.18)}>
               <div className="featured-img-wrap">
                 <img
                   src={`${import.meta.env.BASE_URL}${featured.image}`}
                   alt={featured.title}
                   className="featured-img"
                   loading="lazy"
+                decoding="async"
                 />
               </div>
 
@@ -215,7 +217,7 @@ const Projects = () => {
 
                 <Buttons project={featured} />
               </div>
-            </motion.div>
+            </m.div>
 
             {/* ── Regular grid ── */}
             <div className="projects-grid">
@@ -226,7 +228,7 @@ const Projects = () => {
           </>
         ) : (
           /* ── Filtered grid — one cheap fade keyed to the active filter ── */
-          <motion.div
+          <m.div
             key={`${activeTech}-${q}`}
             className="projects-grid"
             initial={{ opacity: 0 }}
@@ -236,14 +238,14 @@ const Projects = () => {
             {filtered.map((project, i) => (
               <ProjectCard key={project.id} project={project} num={`0${i + 1}`} />
             ))}
-          </motion.div>
+          </m.div>
         )}
 
-        <motion.div className="view-all-container" {...anim(0.3)}>
+        <m.div className="view-all-container" {...anim(0.3)}>
           <a href="https://github.com/abdalrahmanhajjo" className="view-all-btn" target="_blank" rel="noopener noreferrer">
             <FaGithub /> View All on GitHub
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

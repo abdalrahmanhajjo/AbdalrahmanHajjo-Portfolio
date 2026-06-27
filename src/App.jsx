@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
@@ -9,7 +10,6 @@ import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import AiAssistant from './components/AiAssistant';
 import useScrollReveal from './hooks/useScrollReveal';
 import './App.css';
 import './styles/variables.css';
@@ -17,9 +17,14 @@ import './styles/base.css';
 import './styles/components.css';
 import './styles/animations.css';
 
+// Below-the-fold interactive widget — split into its own chunk and mounted
+// only once the page is idle, so it never competes with first paint.
+const AiAssistant = lazy(() => import('./components/AiAssistant'));
+
 function App() {
   const [theme, setTheme] = useState('dark');
   const [isLoading, setIsLoading] = useState(true);
+  const [showAssistant, setShowAssistant] = useState(false);
 
   // Bring the data-aos sections (About, Certifications, Contact) to life.
   useScrollReveal();
@@ -44,6 +49,14 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  // Defer loading the chat widget chunk until the browser is idle.
+  useEffect(() => {
+    const ric = window.requestIdleCallback || ((cb) => window.setTimeout(cb, 200));
+    const cancel = window.cancelIdleCallback || window.clearTimeout;
+    const id = ric(() => setShowAssistant(true));
+    return () => cancel(id);
+  }, []);
+
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
@@ -51,30 +64,36 @@ function App() {
   };
 
   return (
-    <div className="app" data-theme={theme}>
-      {isLoading && (
-        <div className="loading-screen">
-          <div className="loading-spinner"></div>
-        </div>
-      )}
+    <LazyMotion features={domAnimation}>
+      <div className="app" data-theme={theme}>
+        {isLoading && (
+          <div className="loading-screen">
+            <div className="loading-spinner"></div>
+          </div>
+        )}
 
-      <div className="scroll-progress" id="scrollProgress"></div>
-      <div className="grain" aria-hidden="true"></div>
+        <div className="scroll-progress" id="scrollProgress"></div>
+        <div className="grain" aria-hidden="true"></div>
 
-      <Header theme={theme} toggleTheme={toggleTheme} />
-      <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Skills />
-        <Stats />
-        <Projects />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
-      <AiAssistant />
-    </div>
+        <Header theme={theme} toggleTheme={toggleTheme} />
+        <main>
+          <Hero />
+          <Marquee />
+          <About />
+          <Skills />
+          <Stats />
+          <Projects />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+        {showAssistant && (
+          <Suspense fallback={null}>
+            <AiAssistant />
+          </Suspense>
+        )}
+      </div>
+    </LazyMotion>
   );
 }
 
