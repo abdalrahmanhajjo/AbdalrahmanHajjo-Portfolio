@@ -8,6 +8,13 @@
     "UI Engineer",
     "Problem Solver"
   ],
+  "builds": [
+    "full-stack web apps",
+    "React and Node platforms",
+    "Flutter mobile apps",
+    "fast, reliable APIs",
+    "production-ready products"
+  ],
   "subtitle": "I build fast, reliable web and mobile apps with React, Node.js, and Flutter, from first sketch to production.",
   "buttons": [
     { "label": "View My Work", "href": "#projects", "icon": "FaRocket", "variant": "primary" },
