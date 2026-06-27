@@ -37,6 +37,13 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Drive the theme from the <html> element — the CSS variables live on
+  // [data-theme="dark"], which the inline boot script set on <html>. Without
+  // this, toggling only changed the inner .app div and nothing switched.
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
