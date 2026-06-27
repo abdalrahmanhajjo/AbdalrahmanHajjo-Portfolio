@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { m } from 'framer-motion';
-import Typed from 'typed.js';
+import React, { useEffect, useRef, useState } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import hero from '../data/hero.json';
 import iconMap from '../data/iconMap';
 
@@ -19,18 +18,15 @@ const Hero = () => {
   const nameRef = useRef(null); // the giant name; cursor reveals the lime fill over it
   const frame = useRef(0);      // pending rAF id, 0 = none
 
-  // Rotating "I build ___" phrase.
+  // Rotating "Building ___" phrase — whole phrases cross-fade, so the user
+  // never sees a half-typed word.
+  const [phrase, setPhrase] = useState(0);
   useEffect(() => {
-    const typed = new Typed('#typed-build', {
-      strings: hero.builds,
-      typeSpeed: 60,
-      backSpeed: 32,
-      backDelay: 1600,
-      startDelay: 400,
-      loop: true,
-      showCursor: false,
-    });
-    return () => typed.destroy();
+    const id = setInterval(
+      () => setPhrase((i) => (i + 1) % hero.builds.length),
+      2600
+    );
+    return () => clearInterval(id);
   }, []);
 
   useEffect(() => () => cancelAnimationFrame(frame.current), []);
@@ -93,22 +89,31 @@ const Hero = () => {
 
         {/* The hero device: an outlined name whose letters fill with lime
             under a spotlight that follows the cursor. */}
-        <m.h1 className="sr-name" ref={nameRef} variants={item} aria-label={`${hero.name} Hajjo`}>
-          <span className="sr-name-base" aria-hidden="true">
-            Abdalrahman<br />Hajjo
-          </span>
-          <span className="sr-name-fill" aria-hidden="true">
-            Abdalrahman<br />Hajjo
-          </span>
+        <m.h1 className="sr-name" ref={nameRef} variants={item} aria-label="Abdalrahman Hajjo">
+          <span className="sr-name-base" aria-hidden="true">Abdalrahman Hajjo</span>
+          <span className="sr-name-fill" aria-hidden="true">Abdalrahman Hajjo</span>
         </m.h1>
 
-        <m.p className="sr-tagline" variants={item}>
-          Full-stack developer in Tripoli, Lebanon. I build{' '}
-          <span className="sr-build">
-            <span id="typed-build" />
-            <span className="sr-caret" aria-hidden="true" />
+        <m.div className="sr-tagline" variants={item}>
+          <span className="sr-tagline-lead">Full-stack developer in Tripoli, Lebanon.</span>
+          <span className="sr-tagline-build">
+            Building{' '}
+            <span className="sr-build">
+              <AnimatePresence mode="wait">
+                <m.span
+                  key={phrase}
+                  className="sr-build-word"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {hero.builds[phrase]}
+                </m.span>
+              </AnimatePresence>
+            </span>
           </span>
-        </m.p>
+        </m.div>
 
         <m.div className="sr-actions" variants={item}>
           {hero.buttons.map((btn) => {

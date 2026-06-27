@@ -380,9 +380,10 @@
   margin: 0 0 clamp(18px, 3vh, 30px);
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.035em;
-  font-size: clamp(3rem, 11.5vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-size: clamp(1.75rem, 9vw, 8rem);
+  white-space: nowrap;
   text-rendering: optimizeLegibility;
 }
 /* Base: outlined, always legible, carries the layout */
@@ -404,30 +405,34 @@
 
 /* ---------- Tagline + rotating phrase ---------- */
 .sr-tagline {
-  max-width: 46ch;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 52ch;
   margin: 0 0 clamp(26px, 4vh, 40px);
-  font-size: clamp(1.02rem, 1.2vw, 1.25rem);
-  line-height: 1.6;
+  line-height: 1.5;
+}
+.sr-tagline-lead {
+  font-size: clamp(1rem, 1.15vw, 1.2rem);
   color: var(--text-secondary);
 }
-.sr-build {
-  display: inline-flex;
-  align-items: baseline;
-  color: var(--text-heading);
+.sr-tagline-build {
+  font-size: clamp(1.15rem, 1.7vw, 1.6rem);
   font-weight: 600;
+  color: var(--text-heading);
 }
-.sr-build #typed-build { color: var(--accent-600); }
-[data-theme="dark"] .sr-build #typed-build { color: var(--accent-400); }
-.sr-caret {
+/* Rotating phrase: whole-word cross-fade, never half-typed */
+.sr-build {
+  position: relative;
+  display: inline-flex;
+  vertical-align: bottom;
+}
+.sr-build-word {
   display: inline-block;
-  width: 2px;
-  height: 1.05em;
-  margin-left: 3px;
-  transform: translateY(0.12em);
-  background: var(--accent-500);
-  border-radius: 2px;
-  animation: srBlink 1s step-end infinite;
+  color: var(--accent-600);
+  font-weight: 700;
 }
+[data-theme="dark"] .sr-build-word { color: var(--accent-400); }
 
 /* ---------- Actions ---------- */
 .sr-actions {
