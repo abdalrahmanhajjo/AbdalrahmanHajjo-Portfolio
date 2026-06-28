@@ -2063,3 +2063,28 @@
 .project-btn-live.disabled {
   color: var(--text-tertiary);
 }
+
+/* ============================================================
+   LIGHT MODE - a distinct surface per section
+   In bright mode the default tokens render every section as the
+   same near-white sheet. Give each section its own clearly
+   different (but brand-coherent: cool neutrals + lime) plane so
+   the page has rhythm. Scoped to [data-theme="light"] only, so
+   dark mode is untouched. Contact and Footer are already dark.
+   ============================================================ */
+[data-theme="light"] .marquee { background: #eef7cf; }
+[data-theme="light"] .about { background: #dde6f1; }
+[data-theme="light"] .skills-section { background: #ffffff; }
+[data-theme="light"] .stats-section { background: linear-gradient(135deg, #e9f3c4 0%, #d6e79c 100%); }
+[data-theme="light"] .projects-section { background: #dde6f1; }
+[data-theme="light"] .certifications { background: #ffffff; }
+
+/* Crisp hairline so adjacent light planes read as separate sections */
+[data-theme="light"] .about,
+[data-theme="light"] .skills-section,
+[data-theme="light"] .stats-section,
+[data-theme="light"] .projects-section,
+[data-theme="light"] .certifications { border-top: 1px solid rgba(12, 17, 29, 0.10); }
+
+/* The outlined hero name needs more presence on a light background */
+[data-theme="light"] .sr-name-base { -webkit-text-stroke-color: rgba(12, 17, 29, 0.5); }
